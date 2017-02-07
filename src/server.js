@@ -20,3 +20,18 @@ var tls = {
 const port = process.env.PORT || 4000;
 
 server.connection({port: port, tls: tls });
+
+
+server.register(Inert, (err) => {
+  if (err) throw err;
+
+  server.route({
+    method: 'GET',
+    path: '/{param*}',
+    handler: {
+      directory: {
+        path: 'public'
+      }
+    }
+  })
+});
