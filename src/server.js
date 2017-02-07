@@ -38,7 +38,7 @@ server.register(Inert, (err) => {
 
 server.register(Vision, (err) => {
   if (err) throw err;
-  
+
   server.views({
     engines: {
       html: Handlebars
@@ -87,3 +87,5 @@ server.register(Vision, (err) => {
     }
   ]);
 });
+
+module.exports = server;
