@@ -70,8 +70,7 @@ server.register(Vision, (err) => {
       	}
       	let promise = yotiClient.getActivityDetails(token);
       	promise.then((activityDetails) => {
-          console.log("RECEIPT: ", activityDetails.receipt);
-          reply.view('profile', {
+          reply.view('verified', {
       			userId  : activityDetails.getUserId(),
       			profile : activityDetails.getUserProfile(),
       			outcome : activityDetails.getOutcome()
