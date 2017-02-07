@@ -7,7 +7,7 @@ const fs = require('fs');
 const path = require('path');
 // const env = require('env2')('./api-keys.env');
 
-const CLIENT_SDK_ID = '88d412c3-280c-4eef-965b-f64ebacae1a4'
+const CLIENT_SDK_ID = '7dd705c6-4345-41b4-9713-0275fcd96506'
 const PEM = fs.readFileSync(path.join(__dirname, "../keys/app.pem"));
 var yotiClient = new YotiClient(CLIENT_SDK_ID, PEM)
 const server = new Hapi.Server();
