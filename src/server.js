@@ -35,3 +35,55 @@ server.register(Inert, (err) => {
     }
   })
 });
+
+server.register(Vision, (err) => {
+  if (err) throw err;
+  
+  server.views({
+    engines: {
+      html: Handlebars
+    },
+    path: 'views',
+    layoutPath: 'views/layout',
+    layout: 'layout',
+  });
+
+  server.route([
+    {
+      path: '/',
+      method: 'GET',
+      handler: (req, reply) => {
+        reply.view('index');
+
+      }
+    },
+    {
+      path: '/thankyou',
+      method: 'GET',
+      handler: (req, reply) => {
+      	let token = req.query.token;
+      	if(!token) {
+      		reply.view('error', {
+      			error : "No token has been provided."
+      		});
+      		return;
+      	}
+      	let promise = yotiClient.getActivityDetails(token);
+      	promise.then((activityDetails) => {
+          console.log("RECEIPT: ", activityDetails.receipt);
+          reply.view('profile', {
+      			userId  : activityDetails.getUserId(),
+      			profile : activityDetails.getUserProfile(),
+      			outcome : activityDetails.getOutcome()
+      		})
+      	}).catch((err) => {
+      		console.error(err);
+      		reply.view('error', {
+      			error : err
+      		});
+      		return;
+  	    })
+      }
+    }
+  ]);
+});
