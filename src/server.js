@@ -66,7 +66,7 @@ server.register(Vision, (err) => {
       handler: (req, reply) => {
         request.get(`https://www.yoti.com/qr/${SCENARIO_ID}`, (error, response, body) => {
           let url = body.match(/https:\/\/code\.yoti\.com\/.*\?/)[0].slice(0, -1);
-          var svg = new QRCode(url).svg();
+          var svg = new QRCode({content: url, color: '#0000ff'}).svg();
           reply(svg);
         })
       }

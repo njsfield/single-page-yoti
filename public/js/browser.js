@@ -3,7 +3,7 @@
     var t = {
             config: {
                 service: "https://www.yoti.com/connect/",
-                qr: "https://www.yoti.com/qr/",
+                qr:      "https://www.yoti.com/qr/",
                 fontCDN: "https://fonts.googleapis.com/css?family=Roboto"
             }
         },
