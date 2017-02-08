@@ -66,11 +66,11 @@
             if (i) {
                 document.getElementById("inline-qr-div").innerHTML = n;
                 var o = document.createElement("script");
-                o.setAttribute("id", "inline-qr-script"), o.innerHTML = r, document.querySelector(".qrcodecontainer").appendChild(o)
+                o.setAttribute("id", "inline-qr-script"), o.innerHTML = r, document.querySelector("body").appendChild(o)
             } else {
                 var a = document.createElement("div"),
                     o = document.createElement("script");
-                a.setAttribute("id", "inline-qr-div"), o.setAttribute("id", "inline-qr-script"), a.innerHTML = n, o.innerHTML = r, e.parentNode.appendChild(a), document.querySelector(".qrcodecontainer").appendChild(o)
+                a.setAttribute("id", "inline-qr-div"), o.setAttribute("id", "inline-qr-script"), a.innerHTML = n, o.innerHTML = r, document.querySelector(".qrcodecontainer").appendChild(a), document.querySelector(".qrcodecontainer").appendChild(o)
             }
         };
     t.renderTimeoutButton = function(t) {
