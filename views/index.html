@@ -1,20 +1,20 @@
 
 <h1 class='title'>Welcome</h1>
 <!-- yoti button -->
-<span
-        data-yoti-application-id="035fbd18-955a-407a-a148-d5a5a4f82582"
-        data-yoti-type="inline"
-        data-yoti-scenario-id="22cfd7a3-6b84-4233-8928-706e165ab801"
-        data-size="small">
-        Log in with Yoti
-</span>
+<span style="cursor: pointer;" id="get-qr-button">Get QR</div>
 
-<div class="qrcodecontainer">
-
-</div>
+<br />
+<span class="qr-code-output"></span>
 
 <!-- required for yoti button -->
 <script>
-    _ybg.config.service = 'https://code.yoti.com/app/'
-    _ybg.init()
+  document.getElementById('get-qr-button').addEventListener('click', function(){
+    var output = document.querySelector('.qr-code-output');
+    var o = new XMLHttpRequest();
+        o.addEventListener('load', function(e){
+          output.innerHTML = e.target.responseText;
+        })
+        o.open('GET', '/getqr')
+        o.send();
+  })
 </script>

@@ -43,7 +43,9 @@
             o.onreadystatechange = function() {
                 if (o.readyState === XMLHttpRequest.DONE && 200 === o.status) {
                     var t = JSON.parse(o.responseText);
+                    console.log(o.responseText);
                     e.href = t.qrCodeUrl + "?callback=" + t.callbackUrl + "&id=" + t.application.id + "&mobile=" + JSON.stringify(!!n)
+
                 }
             }, o.open("GET", r, !0),
             o.setRequestHeader("X-Requested-With", "XMLHttpRequest"),
@@ -66,11 +68,17 @@
             if (i) {
                 document.getElementById("inline-qr-div").innerHTML = n;
                 var o = document.createElement("script");
-                o.setAttribute("id", "inline-qr-script"), o.innerHTML = r, document.querySelector("body").appendChild(o)
+                o.setAttribute("id", "inline-qr-script"),
+                o.innerHTML = r, document.querySelector("body").appendChild(o)
             } else {
                 var a = document.createElement("div"),
                     o = document.createElement("script");
-                a.setAttribute("id", "inline-qr-div"), o.setAttribute("id", "inline-qr-script"), a.innerHTML = n, o.innerHTML = r, document.querySelector(".qrcodecontainer").appendChild(a), document.querySelector(".qrcodecontainer").appendChild(o)
+                a.setAttribute("id", "inline-qr-div"),
+                o.setAttribute("id", "inline-qr-script"),
+                a.innerHTML = n,
+                o.innerHTML = r,
+                document.querySelector(".qrcodecontainer").appendChild(a),
+                document.querySelector(".qrcodecontainer").appendChild(o)
             }
         };
     t.renderTimeoutButton = function(t) {

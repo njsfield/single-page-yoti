@@ -5,9 +5,12 @@ const Handlebars = require('handlebars');
 const YotiClient = require('yoti-node-sdk');
 const fs = require('fs');
 const path = require('path');
+const request = require('request');
+const QRCode = require("qrcode-svg");
 // const env = require('env2')('./api-keys.env');
 
 const CLIENT_SDK_ID = '9c50570f-a376-482a-9930-9ee434dedec9'
+const SCENARIO_ID = '22cfd7a3-6b84-4233-8928-706e165ab801'
 const PEM = fs.readFileSync(path.join(__dirname, "../keys/app.pem"));
 var yotiClient = new YotiClient(CLIENT_SDK_ID, PEM)
 const server = new Hapi.Server();
@@ -55,6 +58,17 @@ server.register(Vision, (err) => {
       handler: (req, reply) => {
         reply.view('index');
 
+      }
+    },
+    {
+      path: '/getqr',
+      method: 'GET',
+      handler: (req, reply) => {
+        request.get(`https://www.yoti.com/qr/${SCENARIO_ID}`, (error, response, body) => {
+          let url = body.match(/https:\/\/code\.yoti\.com\/.*\?/)[0].slice(0, -1);
+          var svg = new QRCode(url).svg();
+          reply(svg);
+        })
       }
     },
     {
