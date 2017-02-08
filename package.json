@@ -1,22 +1,15 @@
 {
-  "name": "childline-yoti",
+  "name": "single-page-yoti",
   "version": "1.0.0",
-  "description": "A web app for reporting explicit online images to the IWF",
+  "description": "To demonstrate a single page yoti authentication",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node index.js"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/FAC9/childline-yoti.git"
-  },
-  "author": "William & Nori",
+  "author": "Nick Field",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/FAC9/childline-yoti/issues"
-  },
-  "homepage": "https://github.com/FAC9/childline-yoti#readme",
   "dependencies": {
+    "env2": "^2.1.1",
     "handlebars": "^4.0.6",
     "hapi": "^16.1.0",
     "inert": "^4.1.0",
@@ -24,5 +17,12 @@
     "request": "^2.79.0",
     "vision": "^4.1.1",
     "yoti-node-sdk": "^1.0.2"
+  },
+  "devDependencies": {
+    "eslint": "^3.15.0",
+    "eslint-config-semistandard": "^7.0.0",
+    "eslint-config-standard": "^6.2.1",
+    "eslint-plugin-promise": "^3.4.1",
+    "eslint-plugin-standard": "^2.0.1"
   }
 }

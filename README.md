@@ -1,49 +1,51 @@
-# Childline - Report explicit online content
-
-A web app for reporting explicit online images to the (IWF)[https://www.iwf.org.uk/] (Internet Watch Foundation).
+# Single Page Yoti Response App
 
 
-## Current Approach
+## Setup
 
-Under 18s can report explicit online content to a Childline counsellor. However, they can olny help on condition
-that the young person emails them their passport to prove their age. This is an outdated and cumbersome process.
-This process can deter young people from reporting explicit images. Either they can feel uncomfortable to reveal their identity, or they think the process is too complicated.
+First install the depencies of the project;
 
-For further reading visit the [Childline website](https://www.childline.org.uk/info-advice/bullying-abuse-safety/online-mobile-safety/sexting/)
-
-## How our app can help
-
-Our app uses YOTI for identifications and login.
-
-**Why it beneficial to use YOTI**
-The app uses YOTI to:
-- prove that the young person is under 18
-- prove the young persons identity while protecting their anonimity. The app would only store their
-remember me id, which is a unique identifier. So we only check that they have an accepted personal identification document on their YOTI account, but the app doesn't require access to any of their personal details.
-
-## Development Resources & Notes
-
-### Websites
-
-- [Childline website](https://www.childline.org.uk/info-advice/bullying-abuse-safety/online-mobile-safety/sexting/) - Use for colour schemes as it is already 'proven for use case'.
-  * Colours:
-```css
-  #00a1d0
-  #73cfe8
-  #234f62
-  #632c7a
-  #eb5857
 ```
-- [IWF online form](https://www.iwf.org.uk/) - This form takes a minimum of 5 interactions with Childline website. It is very difficult to find...
+npm install
+```
 
-### Libraries
+To run this project, first set up a [YOTI application](https://www.yoti.com/dashboard/login) that requires the user provide their *Photo* and *Given Name(s)*
 
-- [animate css](https://daneden.github.io/animate.css/) - include *simple* animations for smooth page transitions, however keeping it basic to ensure the user feels taken seriously.
-- [materialize css](http://materializecss.com/buttons.html) - css library for key components.
+Defined your callback URL in the YOTI dashboard as;
 
-### Prototype tech stack
+```
+https://localhost:4000/profile
+```
 
-- Node Hapi.js server
-- client side rendering
+Create a config.env file and add your YOTI SDK ID (available in the Yoti dashboard);
+```
+export YOTI_SDK_ID = {insert yoti sdk id}
+```
+Get your YOTI scenario ID by using a service like [postman](https://www.google.co.uk/webhp?sourceid=chrome-instant&rlz=1C5CHFA_enGB626GB626&ion=1&espv=2&ie=UTF-8#q=postman) to make a GET request to;
+```
+https://yoti.com/dashboard/api/v1/applications/{{insert application ID}}/public
+```
+Check the response header to find your Scenario ID, then update your config.env file to include it
+```
+export YOTI_SDK_ID = {insert yoti sdk id}
+export SCENARIO_ID = {insert scenario id}
+```
+Create a directory called **keys** in the route of this project, include your application **.pem** file available from the YOTI dashboard.
+Finally, follow [these steps](http://stackoverflow.com/questions/12871565/how-to-create-pem-files-for-https-web-server) to generate a
+**server-cert.pem** file and a **server-key.pem** file (for serving over SSL), and place them in the **keys** directory too, which should now look like this...
 
-### Future tech stack
+```
+keys/
+  app.pem
+  server-cert.pem
+  server-key.pem
+```
+
+## Running
+
+To run locally, start the server;
+```
+npm run start
+```
+
+Then visit https://localhost:4000

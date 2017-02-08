@@ -1,20 +1,19 @@
 
-<h1 class='title'>Welcome</h1>
-<!-- yoti button -->
-<span style="cursor: pointer;" id="get-qr-button">Get QR</div>
+<h1 class='title'>Single Page Yoti Response</h1>
+<!-- Yoti button -->
+<span class="get-qr-button" style="cursor: pointer; border: 1px solid blue;">Click to get QR Code...</span>
 
 <br />
 <span class="qr-code-output"></span>
 
+<!-- Image Output -->
+<br />
+<img class="profileimg"/>
+
+<!-- Profile Name -->
+<br />
+<span class="profilename"></span>
+
+
 <!-- required for yoti button -->
-<script>
-  document.getElementById('get-qr-button').addEventListener('click', function(){
-    var output = document.querySelector('.qr-code-output');
-    var o = new XMLHttpRequest();
-        o.addEventListener('load', function(e){
-          output.innerHTML = e.target.responseText;
-        })
-        o.open('GET', '/getqr')
-        o.send();
-  })
-</script>
+<script src="js/custombrowser.js"></script>
